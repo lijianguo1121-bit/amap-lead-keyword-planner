@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Amap Lead Keyword Planner v1.2.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["business_summary", "priority_1", "priority_2", "priority_3"],
+  "properties": {
+    "business_summary": {"type": "string", "minLength": 1},
+    "priority_1": {"$ref": "#/$defs/keywordList"},
+    "priority_2": {"$ref": "#/$defs/keywordList"},
+    "priority_3": {"$ref": "#/$defs/keywordList"}
+  },
+  "$defs": {
+    "keywordList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["keyword", "logic", "market_size", "trend"],
+        "properties": {
+          "keyword": {"type": "string", "minLength": 1},
+          "logic": {"type": "string", "minLength": 1},
+          "market_size": {"type": "string", "minLength": 1},
+          "trend": {
+            "type": "string",
+            "pattern": "^(上涨|温和上涨|结构性分化|下行)(，.*)?$"
+          }
+        }
+      }
+    }
+  }
+}
